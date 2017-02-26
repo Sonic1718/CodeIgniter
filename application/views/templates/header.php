@@ -30,6 +30,19 @@
 			          <li><a href="<?php echo base_url(); ?>">HOME</a></li>
 			          <li><a href="<?php echo base_url(); ?>/posts/">USERS</a></li> 
 			          <li><a href="<?php echo base_url(); ?>/about">ABOUT USS</a></li> 
+			          <?php if(!empty($this->session->userdata('logged_in'))){ ?>
+			          		<li>
+			          			<a>
+				          			<?php 
+				          				$user = $this->session->userdata('logged_in'); 
+				          				echo "Welcome ".$user['username'];
+				          			?> 
+			          			</a>
+			          			<a href="<?php echo base_url('users/logout'); ?>">LOGOUT</a>
+			          		</li>
+			          <?php }else{ ?>
+			           		<li><a href="<?php echo base_url('users/login'); ?>">LOGIN</a></li> 
+			           <?php } ?>
 			        </ul>
 			    </div>
 			</div>
