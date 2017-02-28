@@ -46,7 +46,8 @@
 						'password' => $data['password']
 						);
 					$this->session->set_userdata('logged_in' , $session_data);
-					redirect('users');
+					
+					redirect('users/log/'.$result['id']);
 
 				}else{
 					$this->session->set_flashdata('login_failed' , 'Sorry you are not login');
@@ -54,6 +55,16 @@
 				}
 			}
 		
+		}
+
+		public function log(){
+
+			$userid = $this->uri->segment(3);
+			$result['log'] = $this->user_model->get_log($userid);
+
+			$this->load->view('templates/header');
+			$this->load->view('users/log', $result);
+			$this->load->view('templates/footer');
 		}
 
 		public function loginview() {

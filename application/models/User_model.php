@@ -41,4 +41,10 @@
 			}
 		}
 
+		public function get_log($userid){
+			$this->db->where('users_id', $userid);
+			$query = $this->db->get('user_log');
+			return $query->row_array();
+		}
+
 	}

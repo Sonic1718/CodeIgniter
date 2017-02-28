@@ -27,20 +27,23 @@
 			    <div class="container-fluid">
 			      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			        <ul class="nav navbar-nav">
-			          <li><a href="<?php echo base_url(); ?>">HOME</a></li>
-			          <li><a href="<?php echo base_url(); ?>/posts/">USERS</a></li> 
-			          <li><a href="<?php echo base_url(); ?>/about">ABOUT USS</a></li> 
-			          <?php if(!empty($this->session->userdata('logged_in'))){ ?>
-			          		<li>
-			          			<a>
-				          			<?php 
-				          				$user = $this->session->userdata('logged_in'); 
-				          				echo "Welcome ".$user['username'];
-				          			?> 
-			          			</a>
-			          			<a href="<?php echo base_url('users/logout'); ?>">LOGOUT</a>
-			          		</li>
-			          <?php }else{ ?>
+			          	<li><a href="<?php echo base_url(); ?>">HOME</a></li>
+			          	<li><a href="<?php echo base_url(); ?>users/">USERS</a></li> 
+			          	<li><a href="<?php echo base_url(); ?>/about">ABOUT USS</a></li>
+			          	<?php if(!empty($this->session->userdata('logged_in'))){ ?> 
+				          	<li class="dropdown">
+							    <a class="dropdown-toggle" data-toggle="dropdown">
+							    	<?php 
+					          			$user = $this->session->userdata('logged_in'); 
+					          				echo "Welcome ".$user['username'];
+					          		?> 
+							    	<span class="caret"></span></button>
+								    <ul class="dropdown-menu">
+								      	<li><a href="<?php echo base_url('users/logout'); ?>">LOGOUT</a></li>
+								    </ul>
+							 	</a>
+							</li>
+						<?php }else{ ?>
 			           		<li><a href="<?php echo base_url('users/login'); ?>">LOGIN</a></li> 
 			           <?php } ?>
 			        </ul>
