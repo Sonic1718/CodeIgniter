@@ -9,6 +9,7 @@
 <?php echo validation_errors(); ?>
 <div class="container">
 	<h1>Hello Index</h1>
+	<a class="btn btn-success" href="<?php echo site_url('users/create'); ?>">Create</a>
 	<table class="table">
 		<tr>
 			<th>Firstname</th>

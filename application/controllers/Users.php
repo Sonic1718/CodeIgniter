@@ -9,6 +9,17 @@
 			$this->load->view('templates/footer');
 		}
 
+		public function create() {
+			if($this->input->post()){
+				$this->user_model->create_users();
+				redirect('users');
+			}else{
+				$this->load->view('templates/header');
+				$this->load->view('users/create');
+				$this->load->view('templates/footer');
+			}
+		}
+
 		public function edit($id) {
 			$data['user'] = $this->user_model->get_edituser($id);
 
@@ -58,9 +69,15 @@
 		}
 
 		public function log(){
-
 			$userid = $this->uri->segment(3);
 			$result['log'] = $this->user_model->get_log($userid);
+			if(!empty($result['log']['log'])){
+				$userlog = $result['log']['log'];
+			}else{
+				$userlog = "Start";
+			}
+
+			$result['update_log'] = $this->user_model->update_log($userid, $userlog);
 
 			$this->load->view('templates/header');
 			$this->load->view('users/log', $result);
@@ -76,10 +93,7 @@
 		public function logout() {
 			$this->session->unset_userdata('logged_in');
 			$data['logout_display'] = 'Successfully Logout';
-
-			$this->load->view('templates/header');
-			$this->load->view('users/loginview', $data);
-			$this->load->view('templates/footer');
+			redirect('users/loginview');
 
 		}
 
