@@ -6,10 +6,19 @@
 		?> 
 	<?php endif; ?>
 </p>
+	<?php if($this->session->userdata('seminar_data')):?>
+		<?php 
+			$user = $this->session->userdata('seminar_data'); 
+			print_r($user);
+		?> 
+	<?php endif; ?>
+
 <?php echo validation_errors(); ?>
+
 <div class="container">
-	<h1>Hello Index</h1>
-	<a class="btn btn-success" href="<?php echo site_url('users/create'); ?>">Create</a>
+	<a class="btn btn-success" href="<?php echo site_url('users/create'); ?>">Create User</a>
+	<a class="btn btn-primary" href="<?php echo site_url('users/createdata'); ?>">Create Data</a>
+
 	<table class="table">
 		<tr>
 			<th>Firstname</th>

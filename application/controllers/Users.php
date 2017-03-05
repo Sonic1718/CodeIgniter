@@ -1,6 +1,12 @@
 <?php
 	class Users extends CI_Controller {
 
+		public function sample() {
+			$this->load->view('templates/header');
+			$this->load->view('templates/sample');
+			$this->load->view('templates/footer');
+		}
+
 		public function index() {
 			$data['users'] = $this->user_model->get_users();
 
@@ -17,6 +23,33 @@
 				$this->load->view('templates/header');
 				$this->load->view('users/create');
 				$this->load->view('templates/footer');
+			}
+		}
+
+		public function createdata() {
+			if($this->input->post()){
+				$data = array(
+					'sn' => $this->input->post('seminar_num'),
+					'from' => $this->input->post('from'),
+					'to' => $this->input->post('to'),
+					'place' => $this->input->post('place')
+				);
+				$this->session->set_userdata('seminar_data', $data);
+				redirect('users/log/6');
+			}else{
+				$this->load->view('templates/header');
+				$this->load->view('users/createdata');
+				$this->load->view('templates/footer');
+			}
+		}
+
+		public function createlog() {
+			if($this->input->post()){
+				$datauser = array(
+					'users_id' => $this->input->post('id')
+				);
+				$data = $this->user_model->create_datalog();
+				redirect('users/log/'.$datauser['users_id']);
 			}
 		}
 

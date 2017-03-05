@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$route['users/createdata'] = 'users/createdata';
 $route['users/create'] = 'users/create';
 $route['users/log'] = 'users/log';
 $route['users/login'] = 'users/login';

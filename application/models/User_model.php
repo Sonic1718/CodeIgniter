@@ -19,6 +19,19 @@
 			$query = $this->db->insert('users');
 		}
 
+		public function create_datalog() {
+			$data = array(
+				'users_id' => $this->input->post('id'),
+				'sn' => $this->input->post('seminar_num'),
+				'from' => $this->input->post('from'),
+				'to' => $this->input->post('to'),
+				'place' => $this->input->post('place')
+				);
+			$this->db->where('users_id', $this->input->post('id'));
+			$this->db->set($data);
+			$query = $this->db->insert('user_log');
+		}
+
 		public function get_edituser($id = FALSE) {
 			if($id === NULL){
 				$query = $this->db->get('users');
@@ -59,7 +72,7 @@
 			$this->db->order_by('id', 'DESC');
 			$this->db->where('users_id', $userid);
 			$query = $this->db->get('user_log');
-			return $query->row_array();
+			return $query->result_array();
 		}
 
 		public function update_log($userid,$userlog){
